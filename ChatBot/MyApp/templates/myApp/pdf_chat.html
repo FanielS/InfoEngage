@@ -1,0 +1,317 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoEngage</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myApp/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script
+        src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/smooth-scrollbar@8.5.2/dist/smooth-scrollbar.js"></script>
+    <style>
+        :root {
+            --color-dark-blue: #0A2C47;
+            --color-medium-blue: #194260;
+            --color-light-beige: #E6DAC7;
+            --color-dark-brown: #64493D;
+            --color-card-bg: #143A5A;
+        }
+
+        body {
+            background-color: var(--color-dark-blue);
+            color: var(--color-light-beige);
+        }
+
+        .navbar,
+        .footer {
+            /* background-color: var(--color-medium-blue); */
+            background-color: transparent;
+        }
+
+        .navbar a,
+        .footer-links a,
+        .footer-social img,
+        .hamburger span {
+            color: var(--color-light-beige);
+        }
+
+        .navbar a:hover,
+        .footer-links a:hover {
+            background-color: var(--color-dark-brown);
+            color: var(--color-light-beige);
+        }
+
+        .hamburger span {
+            background-color: var(--color-light-beige);
+        }
+
+        .mobile-menu a {
+            background-color: var(--color-medium-blue);
+            color: var(--color-light-beige);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--color-light-beige);
+            color: var(--color-light-beige);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-dark-brown);
+            color: var(--color-light-beige);
+        }
+
+        .card,
+        .service {
+            background-color: var(--color-medium-blue);
+        }
+
+        .accordion {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background-color: var(--color-card-bg);
+        }
+
+        .accordion-input {
+            display: none;
+        }
+
+        .accordion-header {
+            display: block;
+            padding: 1rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            background-color: var(--color-medium-blue);
+            color: var (--color-light-beige);
+        }
+
+        .accordion-header:hover {
+            background-color: var(--color-dark-brown);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1rem;
+            background-color: var(--color-card-bg);
+            color: var(--color-light-beige);
+        }
+
+        .accordion-input:checked+.accordion-header+.accordion-content {
+            max-height: 100vh;
+            padding: 1rem;
+        }
+
+        .faq-card {
+            flex: 1 0 auto;
+            max-width: calc(50% - 1rem);
+        }
+
+        .input {
+            background-color: var(--color-light-beige);
+            color: var(--color-card-bg);
+        }
+
+        #pdf-chat-section {
+background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask2061%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='url(%26quot%3b%23SvgjsRadialGradient2062%26quot%3b)'%3e%3c/rect%3e%3cpath d='M176.34 151.28L241.29 188.78L241.29 263.78L176.34 301.28L111.38 263.78L111.38 188.78zM176.34 376.28L241.29 413.78L241.29 488.78L176.34 526.28L111.38 488.78L111.38 413.78zM501.11 488.78L566.06 526.28L566.06 601.28L501.11 638.78L436.15 601.28L436.15 526.28zM631.01 38.78L695.97 76.28L695.97 151.28L631.01 188.78L566.06 151.28L566.06 76.28zM760.92 263.78L825.88 301.28L825.88 376.28L760.92 413.78L695.97 376.28L695.97 301.28zM890.83 263.78L955.78 301.28L955.78 376.28L890.83 413.78L825.87 376.28L825.87 301.28zM1085.69 151.28L1150.64 188.78L1150.64 263.78L1085.69 301.28L1020.74 263.78L1020.74 188.78zM1345.51 -73.72L1410.46 -36.22L1410.46 38.78L1345.51 76.28L1280.55 38.78L1280.55 -36.22zM1475.41 376.28L1540.37 413.78L1540.37 488.78L1475.41 526.28L1410.46 488.78L1410.46 413.78z' stroke='%2303305d' stroke-width='2'%3e%3c/path%3e%3cpath d='M168.84 151.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM233.79 188.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM233.79 263.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM168.84 301.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM103.88 263.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM103.88 188.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM168.84 376.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM233.79 413.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM233.79 488.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM168.84 526.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM103.88 488.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM103.88 413.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM493.61 488.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM558.56 526.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM558.56 601.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM493.61 638.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM428.65 601.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM428.65 526.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM623.51 38.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM688.47 76.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM688.47 151.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM623.51 188.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM558.56 151.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM558.56 76.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM753.42 263.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM818.38 301.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM818.38 376.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM753.42 413.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM688.47 376.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM688.47 301.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM883.33 263.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM948.28 301.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM948.28 376.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM883.33 413.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM818.37 376.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM818.37 301.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1078.19 151.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1143.14 188.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1143.14 263.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1078.19 301.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1013.24 263.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1013.24 188.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1338.01 -73.72 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1402.96 -36.22 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1402.96 38.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1338.01 76.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1273.05 38.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1273.05 -36.22 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1467.91 376.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1532.87 413.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1532.87 488.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1467.91 526.28 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1402.96 488.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1402.96 413.78 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0z' fill='%2303305d'%3e%3c/path%3e%3cpath d='M51.37 199.68L129.31 244.68L129.31 334.68L51.37 379.68L-26.57 334.68L-26.57 244.68zM51.37 469.68L129.31 514.68L129.31 604.68L51.37 649.68L-26.57 604.68L-26.57 514.68zM363.15 469.68L441.09 514.68L441.09 604.68L363.15 649.68L285.2 604.68L285.2 514.68zM830.82 469.68L908.76 514.68L908.76 604.68L830.82 649.68L752.87 604.68L752.87 514.68zM1376.43 334.68L1454.37 379.68L1454.37 469.68L1376.43 514.68L1298.48 469.68L1298.48 379.68zM1454.37 -70.32L1532.32 -25.32L1532.32 64.68L1454.37 109.68L1376.43 64.68L1376.43 -25.32z' stroke='url(%26quot%3b%23SvgjsLinearGradient2063%26quot%3b)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask2061'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3cradialGradient cx='50%25' cy='100%25' r='912.14' gradientUnits='userSpaceOnUse' id='SvgjsRadialGradient2062'%3e%3cstop stop-color='%230e2a47' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(1%2c 2%2c 19%2c 1)' offset='0.52'%3e%3c/stop%3e%3c/radialGradient%3e%3clinearGradient x1='220.03199999999998' y1='-220.02399999999997' x2='1219.9679999999998' y2='780.024' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient2063'%3e%3cstop stop-color='%230e2a47' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(1%2c 2%2c 19%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--color-dark-blue);
+            color: var(--color-light-beige);
+            background-size: cover;
+            /* background-repeat: repeat-y; */
+            background-position: center center;
+            text-align: center;
+            padding: 2rem;
+            display: flex;
+            justify-content: center;
+            align-items: center;
+            flex-direction: column;
+            text-align: center;
+        }
+
+        #home {
+            display: flex;
+            justify-content: space-between;
+            /* Space out items to push the content to the left and background image to the right */
+            /* align-items: center; */
+            min-height: 100vh;
+            background-color: #010213;
+            color: var(--color-light-beige);
+            position: relative;
+            /* Make sure to position the background-image absolutely */
+            overflow: hidden;
+            /* Optional: hide any overflow from the background image */
+        }
+
+        #home .content {
+            flex: 1;
+            /* Allow content to take available space */
+            padding: 2rem;
+            text-align: left;
+            z-index: 1;
+            /* Ensure content is above the background image */
+        }
+
+
+        #home .background-image {
+            position: absolute;
+    top: 0.6rem;
+    right: 0;
+    width: 50%;
+    height: 100%;
+    background-image: url('{% static "myApp/pdf.jpeg" %}');
+    background-size: contain; /* Adjust this to ensure the whole image is visible */
+    background-repeat: no-repeat; /* Prevent repeating the image */
+    background-position: center; /* Center the image */
+    z-index: 0;
+        }
+
+
+        @media (max-width: 768px) {
+            .faq-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar fixed w-full z-10 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <div class="text-xl font-bold">InfoEngage</div>
+            <div class="hidden md:flex space-x-4">
+                <a href="{% url 'home' %}" class="hover:bg-dark-brown p-2 rounded">Home</a>
+                <a href="{% url 'home' %}" class="hover:bg-dark-brown p-2 rounded">About</a>
+                <a href="{% url 'home' %}" class="hover:bg-dark-brown p-2 rounded">Services</a>
+                <a href="{% url 'home' %}" class="hover:bg-dark-brown p-2 rounded">Contact</a>
+                <a href="{% url 'home' %}" class="hover:bg-dark-brown p-2 rounded">FAQ</a>
+            </div>
+            <button class="md:hidden hamburger p-2 rounded focus:outline-none" id="hamburger">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="hidden mobile-menu md:hidden">
+        <a href="#home" class="block p-2">Home</a>
+        <a href="#about" class="block p-2">About</a>
+        <a href="#services" class="block p-2">Services</a>
+        <a href="#contact" class="block p-2">Contact</a>
+        <a href="#faq" class="block p-2">FAQ</a>
+    </div>
+
+    <div id="home" class="section landing min-h-screen flex items-center justify-center bg-dark-blue text-light-beige">
+        <div class="content">
+            <h1 class="text-4xl font-bold mb-4">Chat with PDF Files</h1>
+            <p class="text-lg mb-6">Upload your PDF files and ask any questions to get quick and precise answers.</p>
+            <a href="#pdf-chat-section" class="btn btn-outline">Try It Now</a>
+        </div>
+        <div class="background-image"></div>
+    </div>
+
+    <section id="pdf-chat-section" class="py-16 bg-dark-blue">
+        <div class="container mx-auto">
+            <h2 class="text-3xl font-bold text-center mb-8">Upload PDF Files and Ask Questions</h2>
+            <form id="pdf-chat-form" enctype="multipart/form-data" class="max-w-lg mx-auto card p-8 rounded-lg shadow-lg">
+                {% csrf_token %}
+                <label for="pdf_files" class="block mb-4">Upload PDF files:</label>
+                <input type="file" id="pdf_files" name="pdf_files" accept=".pdf" multiple required class="block w-full py-2 px-4 mb-4 rounded-lg  text-white">
+                <label for="user_query" class="block mb-4">Enter your query:</label>
+                <textarea id="user_query" name="user_query" rows="4" placeholder="Type your query here" required class="block w-full py-2 px-4 mb-4 rounded-lg text-black"></textarea>
+                <button type="submit" id="submit-button" class="btn btn-outline w-full relative">
+                    <span class="button-text">Submit</span>
+                    <div class="absolute inset-0 flex items-center justify-center pointer-events-none" id="spinner" style="display: none;">
+                        <svg class="animate-spin h-5 w-5 text-light-beige" xmlns="http://www.w3.org/2000/svg" fill="none" viewBox="0 0 24 24">
+                            <circle class="opacity-25" cx="12" cy="12" r="10" stroke="currentColor" stroke-width="4"></circle>
+                            <path class="opacity-75" fill="currentColor" d="M4 12a8 8 0 018-8V2.5a.5.5 0 011 0V4a8 8 0 01-8 8z"></path>
+                        </svg>
+                    </div>
+                </button>
+                
+                
+            </form>
+            <div id="result" class="result-container max-w-lg mx-auto card p-8 rounded-lg shadow-lg mt-8">
+                <label for="pdf_files" class="block mb-4">Answers:</label>
+            </div>
+        </div>
+        
+    </section>
+    <footer class="footer py-8">
+        <div class="container mx-auto text-center">
+            <div class="mb-4">
+                <a href="#" class="mx-2">Privacy Policy</a> |
+                <a href="#" class="mx-2">Terms of Service</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="mx-2"><img src="{% static 'myApp/facebook.png' %}" alt="Facebook" class="w-6 h-6 inline-block"></a>
+                <a href="#" class="mx-2"><img src="{% static 'myApp/linkedin.png' %}" alt="Twitter" class="w-6 h-6 inline-block"></a>
+                <a href="#" class="mx-2"><img src="{% static 'myApp/twitter.png' %}" alt="LinkedIn" class="w-6 h-6 inline-block"></a>
+            </div>
+            <p class="mt-4">© 2023 InfoEngage. All rights reserved.</p>
+        </div>
+    </footer>
+    <script>
+        document.getElementById('pdf-chat-form').addEventListener('submit', function(event) {
+            event.preventDefault();  // Prevent the form from submitting normally
+
+            var formData = new FormData(this);
+            var xhr = new XMLHttpRequest();
+            var spinner = document.getElementById('spinner');
+            var buttonText = document.querySelector('.button-text');
+            var submitButton = document.getElementById('submit-button');
+
+            // Show the spinner and hide the text
+            spinner.style.display = 'inline-block';
+            buttonText.style.display = 'none';
+
+            xhr.open('POST', '{% url "chat_pdf" %}', true);
+
+            xhr.onload = function() {
+                // Hide the spinner and show the text
+                spinner.style.display = 'none';
+                buttonText.style.display = 'inline';
+
+                if (xhr.status === 200) {
+                    var response = JSON.parse(xhr.responseText);
+                    var resultDiv = document.getElementById('result');
+
+                    // Clear previous results
+                    resultDiv.innerHTML = '';
+
+                    if (response.result) {
+                        var resultText = document.createElement('p');
+                        resultText.textContent = response.result;
+                        resultDiv.appendChild(resultText);
+
+                        // Scroll to the result section
+                        document.getElementById('result').scrollIntoView({ behavior: 'smooth' });
+                    } else {
+                        resultDiv.textContent = 'No result received from the server.';
+                    }
+                } else {
+                    alert('An error occurred while submitting the form.');
+                }
+            };
+
+            xhr.send(formData);
+        });
+
+        // Toggle the navbar on hamburger click
+        document.getElementById('hamburger').addEventListener('click', function() {
+            var navbar = document.querySelector('.navbar');
+            navbar.classList.toggle('active');
+        });
+    </script>
+</body>
+</html>

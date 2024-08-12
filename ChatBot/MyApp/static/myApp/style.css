@@ -1,0 +1,55 @@
+:root {
+    --color-dark-blue: #0A2C47;
+    --color-medium-blue: #194260;
+    --color-light-beige: #E6DAC7;
+    --color-dark-brown: #64493D;
+    --color-card-bg: #143A5A; /* Darker card background color */
+}
+
+body {
+    background-color: var(--color-dark-blue);
+    color: var(--color-light-beige);
+}
+
+.navbar, .footer {
+    background-color: var(--color-medium-blue);
+}
+
+.navbar a, .footer-links a, .footer-social img, .hamburger span {
+    color: var(--color-light-beige);
+}
+
+.navbar a:hover, .footer-links a:hover {
+    background-color: var(--color-dark-brown);
+    color: var(--color-dark-blue);
+}
+
+.explore-btn, .btn-primary {
+    background-color: var(--color-dark-brown);
+    border: none;
+    color: var(--color-dark-blue);
+}
+
+.explore-btn:hover, .btn-primary:hover {
+    background-color: var(--color-medium-blue);
+}
+
+.hamburger span {
+    background-color: var(--color-light-beige);
+}
+
+.mobile-menu a {
+    background-color: var(--color-medium-blue);
+    color: var(--color-light-beige);
+}
+
+.btn-outline {
+    background-color: transparent;
+    border-color: var(--color-dark-brown);
+    color: var(--color-dark-brown);
+}
+
+.btn-outline:hover {
+    background-color: var(--color-dark-brown);
+    color: var(--color-medium-blue);
+}

@@ -1,0 +1,230 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>InfoEngage</title>
+    {% load static %}
+    <link rel="stylesheet" href="{% static 'myApp/style.css' %}">
+    <link href="https://cdn.jsdelivr.net/npm/daisyui@4.12.10/dist/full.min.css" rel="stylesheet" type="text/css" />
+    <script
+        src="https://cdn.tailwindcss.com?plugins=forms,typography,aspect-ratio,line-clamp,container-queries"></script>
+    <script src="https://code.jquery.com/jquery-3.6.0.min.js"></script>
+    <script src="https://cdn.jsdelivr.net/npm/smooth-scrollbar@8.5.2/dist/smooth-scrollbar.js"></script>
+    <style>
+        :root {
+            --color-dark-blue: #0A2C47;
+            --color-medium-blue: #194260;
+            --color-light-beige: #E6DAC7;
+            --color-dark-brown: #64493D;
+            --color-card-bg: #143A5A;
+            /* Darker card background color */
+        }
+
+        body {
+            background-color: var(--color-dark-blue);
+            color: var(--color-light-beige);
+
+        }
+
+        .navbar,
+        .footer {
+            background-color: transparent;
+        }
+
+        .navbar a,
+        .footer-links a,
+        .footer-social img,
+        .hamburger span {
+            color: var(--color-light-beige);
+        }
+
+        .navbar a:hover,
+        .footer-links a:hover {
+            background-color: var(--color-dark-brown);
+            color: var(--color-light-beige);
+        }
+
+        .hamburger span {
+            background-color: var(--color-light-beige);
+        }
+
+        .mobile-menu a {
+            background-color: var(--color-medium-blue);
+            color: var(--color-light-beige);
+        }
+
+        .btn-outline {
+            background-color: transparent;
+            border-color: var(--color-light-beige);
+            color: var(--color-light-beige);
+        }
+
+        .btn-outline:hover {
+            background-color: var(--color-dark-brown);
+            color: var(--color-light-beige);
+        }
+
+        .card,
+        .service {
+            background-color: rgba(25, 66, 96, 0.8);
+        }
+
+        /* Accordion styles */
+        .accordion {
+            border-radius: 0.5rem;
+            overflow: hidden;
+            margin-bottom: 1rem;
+            background-color: var(--color-card-bg);
+            /* Darker card background color */
+        }
+
+        .accordion-input {
+            display: none;
+        }
+
+        .accordion-header {
+            display: block;
+            padding: 1rem;
+            font-size: 1.2rem;
+            cursor: pointer;
+            background-color: var(--color-medium-blue);
+            color: var(--color-light-beige);
+        }
+
+        .accordion-header:hover {
+            background-color: var(--color-dark-brown);
+        }
+
+        .accordion-content {
+            max-height: 0;
+            overflow: hidden;
+            transition: max-height 0.3s ease;
+            padding: 0 1rem;
+            background-color: var(--color-card-bg);
+            color: var(--color-light-beige);
+        }
+
+        .accordion-input:checked+.accordion-header+.accordion-content {
+            max-height: 100vh;
+            /* Adjust as needed */
+            padding: 1rem;
+        }
+
+        .faq-card {
+            flex: 1 0 auto;
+            max-width: calc(50% - 1rem);
+        }
+
+        .input {
+            background-color: var(--color-light-beige);
+            color: var(--color-card-bg);
+        }
+
+        #contact {
+            background-image: url("data:image/svg+xml,%3csvg xmlns='http://www.w3.org/2000/svg' version='1.1' xmlns:xlink='http://www.w3.org/1999/xlink' xmlns:svgjs='http://svgjs.dev/svgjs' width='1440' height='560' preserveAspectRatio='none' viewBox='0 0 1440 560'%3e%3cg mask='url(%26quot%3b%23SvgjsMask1127%26quot%3b)' fill='none'%3e%3crect width='1440' height='560' x='0' y='0' fill='url(%26quot%3b%23SvgjsLinearGradient1128%26quot%3b)'%3e%3c/rect%3e%3cpath d='M5.96 184.51L70.91 222.01L70.91 297.01L5.96 334.51L-58.99 297.01L-58.99 222.01zM70.91 522.01L135.87 559.51L135.87 634.51L70.91 672.01L5.96 634.51L5.96 559.51zM200.82 297.01L265.77 334.51L265.77 409.51L200.82 447.01L135.87 409.51L135.87 334.51zM135.87 409.51L200.82 447.01L200.82 522.01L135.87 559.51L70.91 522.01L70.91 447.01zM200.82 522.01L265.77 559.51L265.77 634.51L200.82 672.01L135.87 634.51L135.87 559.51zM265.77 184.51L330.73 222.01L330.73 297.01L265.77 334.51L200.82 297.01L200.82 222.01zM265.77 409.51L330.73 447.01L330.73 522.01L265.77 559.51L200.82 522.01L200.82 447.01zM460.64 297.01L525.59 334.51L525.59 409.51L460.64 447.01L395.68 409.51L395.68 334.51zM525.59 -40.49L590.54 -2.99L590.54 72.01L525.59 109.51L460.64 72.01L460.64 -2.99zM590.54 72.01L655.5 109.51L655.5 184.51L590.54 222.01L525.59 184.51L525.59 109.51zM590.54 522.01L655.5 559.51L655.5 634.51L590.54 672.01L525.59 634.51L525.59 559.51zM655.5 184.51L720.45 222.01L720.45 297.01L655.5 334.51L590.54 297.01L590.54 222.01zM720.45 297.01L785.41 334.51L785.41 409.51L720.45 447.01L655.5 409.51L655.5 334.51zM850.36 72.01L915.31 109.51L915.31 184.51L850.36 222.01L785.4 184.51L785.4 109.51zM785.4 184.51L850.36 222.01L850.36 297.01L785.4 334.51L720.45 297.01L720.45 222.01zM915.31 -40.49L980.27 -2.99L980.27 72.01L915.31 109.51L850.36 72.01L850.36 -2.99zM980.27 297.01L1045.22 334.51L1045.22 409.51L980.27 447.01L915.31 409.51L915.31 334.51zM1175.13 -40.49L1240.08 -2.99L1240.08 72.01L1175.13 109.51L1110.17 72.01L1110.17 -2.99zM1175.13 409.51L1240.08 447.01L1240.08 522.01L1175.13 559.51L1110.17 522.01L1110.17 447.01zM1240.08 522.01L1305.03 559.51L1305.03 634.51L1240.08 672.01L1175.13 634.51L1175.13 559.51zM1305.04 -40.49L1369.99 -2.99L1369.99 72.01L1305.04 109.51L1240.08 72.01L1240.08 -2.99zM1369.99 72.01L1434.94 109.51L1434.94 184.51L1369.99 222.01L1305.04 184.51L1305.04 109.51zM1305.04 409.51L1369.99 447.01L1369.99 522.01L1305.04 559.51L1240.08 522.01L1240.08 447.01zM1369.99 522.01L1434.94 559.51L1434.94 634.51L1369.99 672.01L1305.04 634.51L1305.04 559.51zM1434.94 409.51L1499.9 447.01L1499.9 522.01L1434.94 559.51L1369.99 522.01L1369.99 447.01z' stroke='%2303305d' stroke-width='2'%3e%3c/path%3e%3cpath d='M-1.54 184.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM63.41 222.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM63.41 297.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM-1.54 334.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM-66.49 297.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM-66.49 222.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM63.41 522.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM128.37 559.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM128.37 634.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM63.41 672.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM-1.54 634.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM-1.54 559.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM193.32 297.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM258.27 334.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM258.27 409.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM193.32 447.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM128.37 409.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM128.37 334.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM193.32 522.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM63.41 447.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM258.27 559.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM258.27 634.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM193.32 672.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM258.27 184.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM323.23 222.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM323.23 297.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM193.32 222.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM323.23 447.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM323.23 522.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM453.14 297.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM518.09 334.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM518.09 409.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM453.14 447.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM388.18 409.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM388.18 334.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM518.09 -40.49 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM583.04 -2.99 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM583.04 72.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM518.09 109.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM453.14 72.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM453.14 -2.99 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM648 109.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM648 184.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM583.04 222.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM518.09 184.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM583.04 522.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM648 559.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM648 634.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM583.04 672.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM518.09 634.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM518.09 559.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM712.95 222.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM712.95 297.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM648 334.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM583.04 297.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM777.91 334.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM777.91 409.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM712.95 447.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM648 409.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM842.86 72.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM907.81 109.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM907.81 184.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM842.86 222.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM777.9 184.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM777.9 109.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM842.86 297.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM777.9 334.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM907.81 -40.49 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM972.77 -2.99 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM972.77 72.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM842.86 -2.99 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM972.77 297.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1037.72 334.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1037.72 409.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM972.77 447.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM907.81 409.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM907.81 334.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1167.63 -40.49 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1232.58 -2.99 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1232.58 72.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1167.63 109.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1102.67 72.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1102.67 -2.99 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1167.63 409.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1232.58 447.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1232.58 522.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1167.63 559.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1102.67 522.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1102.67 447.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1297.53 559.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1297.53 634.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1232.58 672.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1167.63 634.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1297.54 -40.49 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1362.49 -2.99 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1362.49 72.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1297.54 109.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1427.44 109.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1427.44 184.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1362.49 222.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1297.54 184.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1297.54 409.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1362.49 447.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1362.49 522.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1297.54 559.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1427.44 559.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1427.44 634.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1362.49 672.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1297.54 634.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1427.44 409.51 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1492.4 447.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0zM1492.4 522.01 a7.5 7.5 0 1 0 15 0 a7.5 7.5 0 1 0 -15 0z' fill='%2303305d'%3e%3c/path%3e%3cpath d='M17.14 446.47L60.44 471.47L60.44 521.47L17.14 546.47L-26.16 521.47L-26.16 471.47zM103.75 146.47L147.05 171.47L147.05 221.47L103.75 246.47L60.44 221.47L60.44 171.47zM190.35 -3.53L233.65 21.47L233.65 71.47L190.35 96.47L147.05 71.47L147.05 21.47zM276.95 -3.53L320.26 21.47L320.26 71.47L276.95 96.47L233.65 71.47L233.65 21.47zM363.56 446.47L406.86 471.47L406.86 521.47L363.56 546.47L320.26 521.47L320.26 471.47zM450.17 146.47L493.47 171.47L493.47 221.47L450.17 246.47L406.86 221.47L406.86 171.47zM493.47 371.47L536.77 396.47L536.77 446.47L493.47 471.47L450.17 446.47L450.17 396.47zM536.77 146.47L580.07 171.47L580.07 221.47L536.77 246.47L493.47 221.47L493.47 171.47zM666.68 221.47L709.98 246.47L709.98 296.47L666.68 321.47L623.38 296.47L623.38 246.47zM623.38 296.47L666.68 321.47L666.68 371.47L623.38 396.47L580.07 371.47L580.07 321.47zM666.68 521.47L709.98 546.47L709.98 596.47L666.68 621.47L623.38 596.47L623.38 546.47zM709.98 146.47L753.28 171.47L753.28 221.47L709.98 246.47L666.68 221.47L666.68 171.47zM839.89 371.47L883.19 396.47L883.19 446.47L839.89 471.47L796.59 446.47L796.59 396.47zM926.49 371.47L969.8 396.47L969.8 446.47L926.49 471.47L883.19 446.47L883.19 396.47zM1013.1 221.47L1056.4 246.47L1056.4 296.47L1013.1 321.47L969.8 296.47L969.8 246.47zM1359.52 221.47L1402.82 246.47L1402.82 296.47L1359.52 321.47L1316.22 296.47L1316.22 246.47zM1402.82 446.47L1446.12 471.47L1446.12 521.47L1402.82 546.47L1359.52 521.47L1359.52 471.47z' stroke='rgba(6%2c 80%2c 156%2c 0.93)' stroke-width='2'%3e%3c/path%3e%3c/g%3e%3cdefs%3e%3cmask id='SvgjsMask1127'%3e%3crect width='1440' height='560' fill='white'%3e%3c/rect%3e%3c/mask%3e%3clinearGradient x1='15.28%25' y1='-39.29%25' x2='84.72%25' y2='139.29%25' gradientUnits='userSpaceOnUse' id='SvgjsLinearGradient1128'%3e%3cstop stop-color='%230e2a47' offset='0'%3e%3c/stop%3e%3cstop stop-color='rgba(0%2c 0%2c 0%2c 1)' offset='1'%3e%3c/stop%3e%3c/linearGradient%3e%3c/defs%3e%3c/svg%3e");
+            justify-content: center;
+            align-items: center;
+            min-height: 100vh;
+            background-color: var(--color-dark-blue);
+            color: var(--color-light-beige);
+            background-size: cover;
+            /* background-repeat: repeat-y; */
+            background-position: center center;
+            text-align: center;
+            padding: 2rem;
+            display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    text-align: center;}
+
+        @media (max-width: 768px) {
+            .faq-card {
+                max-width: 100%;
+            }
+        }
+    </style>
+</head>
+
+<body>
+    <div class="navbar fixed w-full z-10 shadow-lg">
+        <div class="container mx-auto flex justify-between items-center p-4">
+            <div class="text-xl font-bold">InfoEngage</div>
+            <div class="hidden md:flex space-x-4">
+                <a href="{% url 'home' %}" class="hover:bg-dark-brown p-2 rounded">Home</a>
+                <a href="{% url 'about' %}" class="hover:bg-dark-brown p-2 rounded">About</a>
+                <a href="{% url 'services' %}" class="hover:bg-dark-brown p-2 rounded">Services</a>
+                <a href="{% url 'contact' %}" class="hover:bg-dark-brown p-2 rounded">Contact</a>
+                <a href="{% url 'faq' %}" class="hover:bg-dark-brown p-2 rounded">FAQ</a>
+            </div>
+            <button class="md:hidden hamburger p-2 rounded focus:outline-none" id="hamburger">
+                <svg class="w-6 h-6" fill="none" stroke="currentColor" viewBox="0 0 24 24"
+                    xmlns="http://www.w3.org/2000/svg">
+                    <path stroke-linecap="round" stroke-linejoin="round" stroke-width="2" d="M4 6h16M4 12h16M4 18h16">
+                    </path>
+                </svg>
+            </button>
+        </div>
+    </div>
+
+    <div class="hidden mobile-menu md:hidden">
+        <a href="#home" class="block p-2">Home</a>
+        <a href="#about" class="block p-2">About</a>
+        <a href="#services" class="block p-2">Services</a>
+        <a href="#contact" class="block p-2">Contact</a>
+        <a href="#faq" class="block p-2">FAQ</a>
+    </div>
+
+
+    <div id="contact" class="section landing min-h-screen bg-dark-blue text-light-beige py-20">
+        <div class="container card p-5 mx-auto text-center  mt-20">
+            <h2 class="text-3xl font-bold mb-6">Contact Us</h2>
+            <p class="mb-6">Get in touch with us for more information.</p>
+            <form class="max-w-lg mx-auto">
+                <input type="text" name="name" placeholder="Your Name" class="input input-bordered w-full mb-4"
+                    required>
+                <input type="email" name="email" placeholder="Your Email" class="input input-bordered w-full mb-4"
+                    required>
+                <textarea name="message" placeholder="Your Message" class="textarea textarea-bordered w-full mb-4"
+                    required></textarea>
+                <button type="submit" class="btn btn-outline">Send Message</button>
+            </form>
+        </div>
+    </div>
+
+    <footer class="footer py-8">
+        <div class="container mx-auto text-center">
+            <div class="mb-4">
+                <a href="#" class="mx-2">Privacy Policy</a> |
+                <a href="#" class="mx-2">Terms of Service</a>
+            </div>
+            <div class="footer-social">
+                <a href="#" class="mx-2"><img src="{% static 'myApp/facebook.png' %}" alt="Facebook"
+                        class="w-6 h-6 inline-block"></a>
+                <a href="#" class="mx-2"><img src="{% static 'myApp/linkedin.png' %}" alt="Twitter"
+                        class="w-6 h-6 inline-block"></a>
+                <a href="#" class="mx-2"><img src="{% static 'myApp/twitter.png' %}" alt="LinkedIn"
+                        class="w-6 h-6 inline-block"></a>
+            </div>
+            <p class="mt-4">© 2023 InfoEngage. All rights reserved.</p>
+        </div>
+    </footer>
+
+    <script>
+        // Smooth scrolling for anchor links
+        document.addEventListener('DOMContentLoaded', function () {
+            const scrollbar = SmoothScrollbar.init(document.body);
+        });
+
+        // Toggle mobile menu
+        document.getElementById('hamburger').addEventListener('click', function () {
+            const mobileMenu = document.querySelector('.mobile-menu');
+            mobileMenu.classList.toggle('hidden');
+            this.classList.toggle('active');
+        });
+    </script>
+</body>
+
+</html>
