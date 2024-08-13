@@ -53,6 +53,5 @@ Clone the repository and follow the instructions below to set up the project loc
 
 8. Finally run the project -  python manage.py runserver
 
-############################################################################################
 
 #### IMPORTANT: features won't work until you replace the API key with your real API key and real assistant ID.
